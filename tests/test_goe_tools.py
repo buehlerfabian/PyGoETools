@@ -75,18 +75,18 @@ def test_set_phase():
         goe.set_phase('1')
 
 
-def test_set_charging_allowed():
-    goe.set_charging_allowed(True)
+def test_allow_charging():
+    goe.allow_charging(True)
     time.sleep(5)
     assert goe.charging_allowed() is True
 
     time.sleep(10)
-    goe.set_charging_allowed(False)
+    goe.allow_charging(False)
     time.sleep(5)
     assert goe.charging_allowed() is False
 
     with pytest.raises(TypeError):
-        goe.set_charging_allowed(1)
+        goe.allow_charging(1)
 
     with pytest.raises(TypeError):
-        goe.set_charging_allowed('True')
+        goe.allow_charging('True')

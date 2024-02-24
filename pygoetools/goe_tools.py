@@ -67,7 +67,7 @@ def set_phase(phase):
                 'Changing to 3 phase charging mode not successful.')
 
 
-def set_charging_allowed(allowed):
+def allow_charging(allowed):
     if not isinstance(allowed, bool):
         raise TypeError('allowed must be a boolean.')
     if allowed:
