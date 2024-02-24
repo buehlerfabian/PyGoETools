@@ -41,3 +41,21 @@ def set_current(current):
     req = requests.get(f'{config.goe_url}/api/set?amp={current}')
     if req.status_code != 200:
         raise OperationFailedError(f'Error setting current to {current} A')
+
+
+def set_phase(phase):
+    if not isinstance(phase, int):
+        raise TypeError('Phase setting must be an integer (1 or 3).')
+    if phase not in [1, 3]:
+        raise ValueError('Phase setting must be 1 or 3.')
+
+    if phase == 1:
+        req = requests.get(f'{config.goe_url}/api/set?psm=1')
+        if req.status_code != 200:
+            raise OperationFailedError(
+                'Changing to 1 phase charging mode not successful.')
+    else:
+        req = requests.get(f'{config.goe_url}/api/set?psm=2')
+        if req.status_code != 200:
+            raise OperationFailedError(
+                'Changing to 3 phase charging mode not successful.')

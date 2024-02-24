@@ -1,5 +1,6 @@
 import pygoetools.goe_tools as goe
 import pytest
+import time
 
 
 def test_get_status():
@@ -46,3 +47,25 @@ def test_set_current():
 
     with pytest.raises(TypeError):
         goe.set_current('6')
+
+
+def test_set_phase():
+    goe.set_phase(1)
+    time.sleep(5)
+    assert goe.get_phase_mode() == goe.PHASE_MODES[1]
+
+    goe.set_phase(3)
+    time.sleep(5)
+    assert goe.get_phase_mode() == goe.PHASE_MODES[2]
+
+    with pytest.raises(ValueError):
+        goe.set_phase(2)
+
+    with pytest.raises(ValueError):
+        goe.set_phase(4)
+
+    with pytest.raises(TypeError):
+        goe.set_phase(1.5)
+
+    with pytest.raises(TypeError):
+        goe.set_phase('1')
