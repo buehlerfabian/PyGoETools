@@ -12,6 +12,7 @@ requests = "^2.31.0"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.2"
+pytest = "^8.0.1"
 
 [build-system]
 requires = ["poetry-core"]
