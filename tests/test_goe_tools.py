@@ -26,6 +26,10 @@ def test_get_current_limit():
     assert current_limit <= 16
 
 
+def test_charging_allowed():
+    assert goe.charging_allowed() in [True, False]
+
+
 def test_set_current():
     goe.set_current(6)
     assert goe.get_current_limit() == 6
@@ -69,3 +73,20 @@ def test_set_phase():
 
     with pytest.raises(TypeError):
         goe.set_phase('1')
+
+
+def test_set_charging_allowed():
+    goe.set_charging_allowed(True)
+    time.sleep(5)
+    assert goe.charging_allowed() is True
+
+    time.sleep(10)
+    goe.set_charging_allowed(False)
+    time.sleep(5)
+    assert goe.charging_allowed() is False
+
+    with pytest.raises(TypeError):
+        goe.set_charging_allowed(1)
+
+    with pytest.raises(TypeError):
+        goe.set_charging_allowed('True')
