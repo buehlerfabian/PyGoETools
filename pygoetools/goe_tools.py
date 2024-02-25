@@ -9,6 +9,7 @@ CHARGE_STATES = {1: 'not connected', 2: 'charging',
 PHASE_MODES = {1: '1-Phase', 2: '3-Phase'}
 FORCE_STATE_MODES = {0: 'Neutral', 1: 'Off', 2: 'On'}
 
+# read config file
 try:
     with open('pygoetoolsrc', 'r') as f:
         config = toml.load(f)
