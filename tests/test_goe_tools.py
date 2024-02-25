@@ -10,6 +10,19 @@ def test_get_status():
     assert "psm" in status
     assert "amp" in status
 
+    status = goe.get_status()
+    assert isinstance(status, dict)
+    assert "charging_state" in status
+    assert "phase_mode" in status
+    assert "current_limit" in status
+    assert "charging_allowed" in status
+    assert status["charging_state"] in goe.CHARGE_STATES.values()
+    assert status["phase_mode"] in goe.PHASE_MODES.values()
+    assert isinstance(status["current_limit"], int)
+    assert status["current_limit"] >= 6
+    assert status["current_limit"] <= 16
+    assert status["charging_allowed"] in [True, False]
+
 
 def test_get_charging_state():
     assert goe.get_charging_state() in goe.CHARGE_STATES.values()
