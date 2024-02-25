@@ -4,7 +4,7 @@ import time
 
 
 def test_get_status():
-    status = goe.get_status()
+    status = goe._get_status()
     assert isinstance(status, dict)
     assert "car" in status
     assert "psm" in status

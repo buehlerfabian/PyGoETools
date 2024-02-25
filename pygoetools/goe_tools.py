@@ -28,29 +28,38 @@ class OperationFailedError(Exception):
     pass
 
 
-def get_status():
+def _get_status():
     dat = requests.get(f'{config["goe_url"]}/api/status').text
     status_dict = json.loads(dat)
     return status_dict
 
 
+def get_status():
+    status_dict = _get_status()
+    return {'charging_state': CHARGE_STATES[status_dict['car']],
+            'phase_mode': PHASE_MODES[status_dict['psm']],
+            'current_limit': status_dict['amp'],
+            'charging_allowed': (status_dict['frc'] == 0 or
+                                 status_dict['frc']) == 2}
+
+
 def get_charging_state():
-    status_dict = get_status()
+    status_dict = _get_status()
     return CHARGE_STATES[status_dict["car"]]
 
 
 def get_phase_mode():
-    status_dict = get_status()
+    status_dict = _get_status()
     return PHASE_MODES[status_dict["psm"]]
 
 
 def get_current_limit():
-    status_dict = get_status()
+    status_dict = _get_status()
     return int(status_dict["amp"])
 
 
 def charging_allowed():
-    status_dict = get_status()
+    status_dict = _get_status()
     return status_dict["frc"] == 0 or status_dict["frc"] == 2
 
 
