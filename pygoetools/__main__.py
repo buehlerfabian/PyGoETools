@@ -1,6 +1,6 @@
 import sys
 import argparse
-import pygoetools.goe_tools as goe 
+import pygoetools.goe_tools as goe
 
 
 def main():
