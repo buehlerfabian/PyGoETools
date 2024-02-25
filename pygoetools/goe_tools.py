@@ -10,16 +10,16 @@ PHASE_MODES = {1: '1-Phase', 2: '3-Phase'}
 FORCE_STATE_MODES = {0: 'Neutral', 1: 'Off', 2: 'On'}
 
 try:
-    with open('goetoolsrc', 'r') as f:
+    with open('pygoetoolsrc', 'r') as f:
         config = toml.load(f)
 except FileNotFoundError:
     home = os.path.expanduser('~')
     try:
-        with open(f'{home}/.config/goetoolsrc', 'r') as f:
+        with open(f'{home}/.config/pygoetoolsrc', 'r') as f:
             config = toml.load(f)
     except FileNotFoundError:
         raise FileNotFoundError(
-            'No goetoolsrc file found in working directory'
+            'No pygoetoolsrc file found in working directory'
             ' or in ~/.config directory.')
 
 
