@@ -3,6 +3,7 @@
 *.log
 
 temp.ipynb
+pygoetoolsrc
 
 # Packages
 *.egg
