@@ -4,11 +4,11 @@ import time
 
 
 def test_get_status():
-    status = goe._get_status()
-    assert isinstance(status, dict)
-    assert "car" in status
-    assert "psm" in status
-    assert "amp" in status
+    status_raw = goe._get_status()
+    assert isinstance(status_raw, dict)
+    assert "car" in status_raw
+    assert "psm" in status_raw
+    assert "amp" in status_raw
 
     status = goe.get_status()
     assert isinstance(status, dict)
@@ -22,6 +22,9 @@ def test_get_status():
     assert status["current_limit"] >= 6
     assert status["current_limit"] <= 16
     assert status["charging_allowed"] in [True, False]
+
+    if status_raw['frc'] == 0 or status_raw['frc'] == 2:
+        assert status['charging_allowed'] is True
 
 
 def test_get_charging_state():

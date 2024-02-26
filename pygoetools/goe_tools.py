@@ -40,7 +40,7 @@ def get_status():
             'phase_mode': PHASE_MODES[status_dict['psm']],
             'current_limit': status_dict['amp'],
             'charging_allowed': (status_dict['frc'] == 0 or
-                                 status_dict['frc']) == 2}
+                                 status_dict['frc'] == 2)}
 
 
 def get_charging_state():
