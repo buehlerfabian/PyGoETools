@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pygoetools"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["Fabian Bühler <buehler.fabian@gmx.de>"]
 readme = "README.md"
