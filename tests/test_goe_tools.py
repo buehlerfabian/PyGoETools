@@ -42,6 +42,32 @@ def test_get_current_limit():
     assert current_limit <= 16
 
 
+def test_get_current_power():
+    current_power = goe.get_current_power()
+    assert isinstance(current_power, float)
+    assert current_power >= 0
+
+
+def test_get_charged_energy():
+    charged_energy = goe.get_charged_energy()
+    assert isinstance(charged_energy, float)
+    assert charged_energy >= 0
+
+
+def test_get_temperature_board():
+    temperature_board = goe.get_temperature_board()
+    assert isinstance(temperature_board, float)
+    assert temperature_board >= -10
+    assert temperature_board <= 100
+
+
+def test_get_temperature_port():
+    temperature_port = goe.get_temperature_port()
+    assert isinstance(temperature_port, float)
+    assert temperature_port >= -10
+    assert temperature_port <= 100
+
+
 def test_charging_allowed():
     assert goe.charging_allowed() in [True, False]
 

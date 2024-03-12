@@ -29,7 +29,9 @@ class OperationFailedError(Exception):
 
 
 def _get_status():
-    dat = requests.get(f'{config["goe_url"]}/api/status').text
+    dat = requests.get(
+        f'{config["goe_url"]}/api/status?filter=car,psm,'
+        'frc,amp,nrg,wh,tma').text
     status_dict = json.loads(dat)
     return status_dict
 
@@ -56,6 +58,26 @@ def get_phase_mode():
 def get_current_limit():
     status_dict = _get_status()
     return int(status_dict["amp"])
+
+
+def get_current_power():
+    status_dict = _get_status()
+    return float(status_dict["nrg"][11])
+
+
+def get_charged_energy():
+    status_dict = _get_status()
+    return float(status_dict["wh"])/1000
+
+
+def get_temperature_board():
+    status_dict = _get_status()
+    return float(status_dict["tma"][1])
+
+
+def get_temperature_port():
+    status_dict = _get_status()
+    return float(status_dict["tma"][0])
 
 
 def charging_allowed():
